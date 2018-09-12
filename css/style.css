@@ -1,0 +1,38 @@
+/*Base*/
+* {
+	background-color: aquamarine;
+}
+
+select {
+	background-color: white;
+}
+
+option {
+	background-color: white;
+}
+
+/*layout*/
+
+section {
+	float: left;
+	margin: 30px;
+	text-align: center;
+}
+
+/*module*/
+header {
+	font-family: Gloria Hallelujah;
+	text-align: center;
+}
+
+h2 {
+	font-family: Gloria Hallelujah;
+}
+
+img {
+	height: 200px;
+}
+
+footer {
+	clear: both;
+}
