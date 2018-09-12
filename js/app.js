@@ -19,10 +19,11 @@ Horn.prototype.render = function () {
 	$animalClone.find('img').attr('src', this.image);
 	$animalClone.find('h2').text(this.title);
 	$animalClone.removeClass('clone');
-	$animalClone.addClass(this.title);
+	$animalClone.addClass(this.keyword);
 }
 
 Horn.allHorns = [];
+const hornKeyword = [];
 
 Horn.readJSON = () => {
 	$.get('data/page-1.json', 'json')
@@ -31,6 +32,13 @@ Horn.readJSON = () => {
 				Horn.allHorns.push(new Horn(animal));
 			})
 			console.log(Horn.allHorns);
+			Horn.allHorns.forEach(animal => {
+				if (hornKeyword.indexOf(animal.keyword) === -1) {
+					hornKeyword.push(animal.keyword);
+				}
+			});
+			console.log(hornKeyword);
+			populateFilterList(hornKeyword);
 		})
 		.then(Horn.loadHorns);
 }
@@ -38,5 +46,25 @@ Horn.readJSON = () => {
 Horn.loadHorns = () => {
 	Horn.allHorns.forEach(animal => animal.render());
 }
+
+const populateFilterList = hornKeyword => {
+	$.each(hornKeyword, (index, value) => {
+		console.log(value);
+		$('select').append(`<option value="${value}">${value.charAt(0).toUpperCase() + value.slice(1)}</option>`);
+	});
+}
+
+
+$('select').change(() => {
+	let $selection = $('select').val();
+
+	if ($selection === 'default') {
+		$('section').show();
+	} else {
+		$('section').hide();
+		$(`section[class="${$selection}"]`).show();
+	}
+
+})
 
 $(() => Horn.readJSON());
