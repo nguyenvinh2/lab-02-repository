@@ -8,11 +8,10 @@ function Horn(hornObject) {
 	this.hornNumber = hornObject.horns;
 }
 
-Horn.prototype.render = function () {
-	$('main').append('<section class="clone"></section>');
-	const $animalClone = $('section[class="clone"]');
-
-	const $animalHTML = $('#photo-template').html();
+Horn.prototype.render = function (section) {
+	$('main').append(`<section class="clone"></section>`);
+	const $animalClone = $(`section[class="clone"]`);
+	const $animalHTML = $(`#photos`).html();
 	$animalClone.html($animalHTML);
 
 	$animalClone.find('p').text(this.description);
@@ -20,13 +19,19 @@ Horn.prototype.render = function () {
 	$animalClone.find('h2').text(this.title);
 	$animalClone.removeClass('clone');
 	$animalClone.addClass(this.keyword);
+	$animalClone.addClass(section);
+
 }
 
-Horn.allHorns = [];
 const hornKeyword = [];
+const pageData = ['data/page-1.json', 'data/page-2.json'];
+const sectionData = ['photos-page-1', 'photos-page-2'];
+let count = 0;
 
-Horn.readJSON = () => {
-	$.get('data/page-1.json', 'json')
+Horn.readJSON = (page, section) => {
+	Horn.allHorns = [];
+	console.log(section)
+	$.get(page, 'json')
 		.then(data => {
 			data.forEach(animal => {
 				Horn.allHorns.push(new Horn(animal));
@@ -40,11 +45,13 @@ Horn.readJSON = () => {
 			console.log(hornKeyword);
 			populateFilterList(hornKeyword);
 		})
-		.then(Horn.loadHorns);
+		.then(() => Horn.loadHorns(section));
 }
 
-Horn.loadHorns = () => {
-	Horn.allHorns.forEach(animal => animal.render());
+Horn.loadHorns = (section) => {
+	console.log('IM HERE', section)
+	console.log(Horn.allHorns)
+	Horn.allHorns.forEach(animal => animal.render(section));
 }
 
 const populateFilterList = hornKeyword => {
@@ -53,6 +60,23 @@ const populateFilterList = hornKeyword => {
 		$('select').append(`<option value="${value}">${value.charAt(0).toUpperCase() + value.slice(1)}</option>`);
 	});
 }
+
+$('#first').click(() => {
+	$('.photos-page-2').hide();
+	$('.photos-page-1').show();
+
+}
+);
+$('#second').click(() => {
+	$('.photos-page-1').hide();
+	if (count === 0) {
+		Horn.readJSON(pageData[1], sectionData[1]);
+		count++;
+	} else {
+		$('.photos-page-2').show();
+	}
+
+});
 
 
 $('select').change(() => {
@@ -67,4 +91,6 @@ $('select').change(() => {
 
 })
 
-$(() => Horn.readJSON());
+$(() => {
+	Horn.readJSON(pageData[0], sectionData[0]);
+})
