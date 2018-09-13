@@ -1,5 +1,7 @@
 ﻿# lab-02-repository
 
+JSON/jQuery/Handlebar Exercise.
+
 # Lab 02: jQuery Selectors and Events
 
 ## Configuration
