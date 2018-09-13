@@ -9,18 +9,10 @@ function Horn(hornObject) {
 }
 
 Horn.prototype.render = function (section) {
-	$('main').append(`<section class="clone"></section>`);
-	const $animalClone = $(`section[class="clone"]`);
-	const $animalHTML = $(`#photos`).html();
-	$animalClone.html($animalHTML);
-
-	$animalClone.find('p').text(this.description);
-	$animalClone.find('img').attr('src', this.image);
-	$animalClone.find('h2').text(this.title);
-	$animalClone.removeClass('clone');
-	$animalClone.addClass(this.keyword);
-	$animalClone.addClass(section);
-
+	this.section = section;
+	const $source = $('#photo-template').html();
+	const template = Handlebars.compile($source);
+	return template(this);
 }
 
 const hornKeyword = [];
@@ -49,9 +41,7 @@ Horn.readJSON = (page, section) => {
 }
 
 Horn.loadHorns = (section) => {
-	console.log('IM HERE', section)
-	console.log(Horn.allHorns)
-	Horn.allHorns.forEach(animal => animal.render(section));
+	Horn.allHorns.forEach(animal => $('#photos').append(animal.render(section)));
 }
 
 const populateFilterList = hornKeyword => {
