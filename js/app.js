@@ -47,6 +47,7 @@ Horn.loadHorns = () => {
 	populateFilterList(hornKeyword);
 	Horn.allHorns.forEach(animal => $('#photos').append(animal.render()));
 	$('.photos-page-2').hide();
+	$('main p').hide();
 }
 
 const sortByHorn = () => {
