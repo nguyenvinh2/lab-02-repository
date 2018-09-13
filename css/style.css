@@ -13,10 +13,11 @@ option {
 
 /*layout*/
 
-section {
-	float: left;
-	margin: 30px;
+
+main {
+	display: flex;
 	text-align: center;
+	width: 90%;
 }
 
 /*module*/
