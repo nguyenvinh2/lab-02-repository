@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script id="photo-template" type="text/x-handlebars-template">
-		<section class="{{keyword}} {{section}}">
+		<section class="{{keyword}} {{page}}">
 			<h2>{{title}}</h2>
 			<img src="{{image}}" alt="">
 			<p>{{description}}</p>
@@ -21,6 +21,8 @@
 		</select>
 		<button id="first">First Page</button>
 		<button id="second">Second Page</button>
+		<button id="sort-name">Sort By Name</button>
+		<button id="sort-horn">Sort By Horn</button>
 	</header>
 	<main id="photos">
 	</main>
