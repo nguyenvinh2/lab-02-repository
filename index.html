@@ -8,22 +8,26 @@
 </head>
 <body>
 	<script id="photo-template" type="text/x-handlebars-template">
-		<section class="{{keyword}} {{page}}">
+		<section class="{{keyword}} {{page}}" id="{{enlarge}}">
 			<h2>{{title}}</h2>
-			<img src="{{image}}" alt="">
+			<img src="{{image}}" class="{{enlarge}}" alt="">
 			<p>{{description}}</p>
 		</section>
 	</script>
-	<header>
-		<h1>The Gallery of Horns</h1>
-		<select>
-			<option value="default">Filter by Keyword</option>
-		</select>
-		<button id="first">First Page</button>
-		<button id="second">Second Page</button>
-		<button id="sort-name">Sort By Name</button>
-		<button id="sort-horn">Sort By Horn</button>
-	</header>
+  <header>
+    <h1>The Gallery of Horns</h1>
+    <button id="first">First Page</button>
+    <button id="second">Second Page</button>
+    <select>
+      <option value="default">Filter by Keyword</option>
+    </select>
+    <button id="sort-name">Sort By Name</button>
+    <button id="sort-horn">Sort By Horn</button>
+  </header>
+
+    <div class="main-content">
+    </div>
+
 	<main id="photos">
 	</main>
 	<footer>

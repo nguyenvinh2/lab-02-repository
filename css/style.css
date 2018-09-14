@@ -1,6 +1,7 @@
 /*Base*/
 * {
 	background-color: aquamarine;
+  text-align: center;
 }
 
 select {
@@ -16,26 +17,52 @@ button {
 }
 /*layout*/
 
-main {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	height: 2200px;
-	flex-wrap: wrap;
+.main-content {
+  text-align:center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
+
+main {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+
+section {
+  width: 33%;
+}
+
 
 /*module*/
 header {
 	font-family: Gloria Hallelujah;
-	text-align: center;
+}
+
+#enlarge {
+  width: 100%;
 }
 
 h2 {
 	font-family: Gloria Hallelujah;
+  background-color: inherit;
+  text-align: center;
+}
+p {
+  background-color: inherit;
 }
 
 img {
 	height: 200px;
+}
+
+img.enlarge {
+  height: 400px;
+  background-color: white;
+  border: solid;
 }
 
 footer {
